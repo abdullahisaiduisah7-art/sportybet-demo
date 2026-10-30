@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SportyBet Clone - Demo</title>
+<style>
+body{margin:0;font-family:Arial;background:#111;color:#fff}
+.header{background:#000;padding:15px;display:flex;justify-content:space-between}
+.header button{background:#00d75a;color:#000;padding:8px 15px;border:0;border-radius:5px;font-weight:bold}
+.game{background:#1e1e1e;margin:10px;padding:12px;border-radius:8px;display:flex;justify-content:space-between;align-items:center}
+.odds span{background:#2a2a2a;padding:6px 12px;margin-left:5px;border-radius:4px;cursor:pointer}
+.odds span:hover{background:#00d75a;color:#000}
+.wallet{padding:15px;background:#222;margin:10px;border-radius:8px}
+.betslip{position:fixed;bottom:0;right:0;width:100%;max-width:350px;background:#fff;color:#000;padding:15px;border-radius:10px 10px 0 0}
+</style>
+</head>
+<body>
+<div class="header">
+  <b>SPORTY-BET DEMO</b>
+  <div>
+    <button onclick="showDeposit()">Deposit</button>
+    <button onclick="showWithdraw()">Withdraw</button>
+    <span id="bal">₦0.00</span>
+  </div>
+</div>
+
+<div class="wallet">
+  <h3>Upcoming Matches</h3>
+  <div id="games"></div>
+</div>
+
+<div class="betslip" id="slip">
+  <b>Bet Slip</b><div id="slipGames">No bets yet</div>
+  <button style="width:100%;background:#00d75a;padding:10px;margin-top:10px;border:0;border-radius:5px;font-weight:bold">Place Bet</button>
+</div>
+
+<script>
+let games = [
+  {team:"Man City vs Arsenal", time:"Today 18:00", o1:2.10, ox:3.20, o2:2.80},
+  {team:"Barcelona vs Real Madrid", time:"Today 20:45", o1:2.50, ox:3.10, o2:2.60},
+  {team:"Al Nassr vs Al Hilal", time:"Tomorrow 17:30", o1:1.90, ox:3.40, o2:3.80},
+]
+let html=""
+games.forEach(g=>{
+ html+=`<div class="game"><div><b>${g.team}</b><br><small>${g.time}</small></div><div class="odds"><span>${g.o1}</span><span>${g.ox}</span><span>${g.o2}</span></div></div>`
+})
+document.getElementById("games").innerHTML=html
+
+function showDeposit(){
+  let amt = prompt("Enter amount to Deposit (DEMO - no real money):");
+  if(amt){ alert(`DEMO: If this was real Paystack integration, we would generate a virtual account number for ₦${amt}. For now, your balance is updated.`); document.getElementById("bal").innerText="₦"+amt+".00"; }
+}
+function showWithdraw(){
+  let amt = prompt("Enter amount to Withdraw:");
+  if(amt){ alert(`DEMO: Withdrawal request for ₦${amt} sent to admin for approval.`); }
+}
+</script>
+</body>
+</html>
